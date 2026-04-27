@@ -38,7 +38,7 @@ class contract_8
 		if ($contract1->fetch($contractid))
 		{
 			$pdf->SetFont('siddhanta', '', 15, '', true);
-            $pdf->multicell(150,10,'पावती',0,'L',false,1,85,$liney,true,0,false,true,10);
+            $pdf->multicell(200,10,'अॅडव्हान्स मिळालेबद्दल लिहून देणार यांनी लिहून घेणार यांना दिलेली पावती',0,'C',false,1,10,$liney,true,0,false,true,10);
             $liney = $liney+15;
             $pdf->SetFont('siddhanta', '', 11, '', true);
             $curdate = date('d/m/Y');
@@ -68,7 +68,7 @@ class contract_8
                 $pdf->line(30,$liney,200,$liney);
                 $liney = $liney+2;
                 $pdf->multicell(25,10,'वय: '.$servicecontractor1->age,0,'L',false,1,30,$liney,true,0,false,true,10);
-                $pdf->multicell(10,10,'धंदा:',0,'L',false,1,100,$liney,true,0,false,true,10);
+                $pdf->multicell(10,10,'धंदा: कॉन्ट्रॅक्टर',0,'L',false,1,100,$liney,true,0,false,true,10);
                 $pdf->multicell(30,10,$servicecontractor1->professionname_unicode,0,'L',false,1,120,$liney,true,0,false,true,10);
                 $liney = $liney+5;
                 $pdf->line(37,$liney,100,$liney);
@@ -96,19 +96,29 @@ class contract_8
                 $contractreceiptdetail1 = new contractreceiptdetail($this->connection);
                 $contractreceiptdetail1 = $this->contractreceiptdetail($this->connection,$contractid,1);
                 $pdf->SetFont('siddhanta', '', 11, '', true);
+                if ($contractreceiptdetail1->chequeamount>0)
+                {
+                    $amt = $contractreceiptdetail1->chequeamount;
+                    $wrdamt = NumberToWords(number_format_indian($contractreceiptdetail1->chequeamount,0,false,false),1);
+                }
+                else
+                {
+                    $amt = 0;
+                    $wrdamt = '(अक्षरी रुपये शून्य)';
+                }
+
                 
-                $wrdamt = NumberToWords(number_format_indian($contractreceiptdetail1->chequeamount,0,false,false),1);
                 $html = '<span style="text-align:justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 वरील पावती लिहून देतो की, मी व माझे सहभागीदार सन <u>'.$contract1->seasonname_unicode.'</u> 
-                च्या गळीत हंगामात ऊस तोड वाहतूक करण्यासाठी श्री छत्रपति सहकारी साखर कारखाना लि. भवानीनगर,भवानीनगर
-                येथे येणार आहोत. ऊस उत्पादकाकडून ऊस तोड वाहतुकीचे काम मिळवणार आहोत 
-                ऊस तो हे काम मिळवून देण्याचे काम तुम्ही आम्हाला करणार आहात.ऊस तोड वाहतुकीस येण्यासाठी बैलगाड्या, वाहन,
+                च्या गळीत हंगामात ऊस तोडणी वाहतूक करण्यासाठी श्री छत्रपति सहकारी साखर कारखाना लि. भवानीनगर,भवानीनगर
+                येथे येणार आहोत. ऊस उत्पादकाकडून ऊस तोडणी वाहतुकीचे काम मिळवणार आहोत 
+                ऊस तो हे काम मिळवून देण्याचे काम तुम्ही आम्हाला करणार आहात.ऊस तोड वाहतुकीस येण्यासाठी मजूर, बैलगाड्या, वाहन,
                 व कोयते वगैरेची पूर्व तयारी करण्यासाठी मला पैशाची गरज आहे. यासाठी तुमचेकडून 
-                अॅडव्हान्स <u>Rs'.$contractreceiptdetail1->chequeamount.' 
-                (अक्षरी '.$wrdamt.')</u> आज रोजी रोख / चेकने मिळाला. श्री छत्रपति सहकारी साखर कारखाना लि. भवानीनगर, ला ऊस पुरवणाऱ्या शेतकऱ्यांचा 
+                अॅडव्हान्स <u>Rs'.$amt.' 
+                '.$wrdamt.'</u> आज रोजी रोख / चेकने मिळाला. श्री छत्रपति सहकारी साखर कारखाना लि. भवानीनगर, ला ऊस पुरवणाऱ्या शेतकऱ्यांचा 
                 ऊस तोडून त्याच्या तोडणी वाहतूक बिलामधून याच हंगामात अॅडव्हान्सची परतफेड करावयाची आहे.
                 त्यासाठी तुमच्याबरोबर वेगळा करार केलेला आहे. येणेप्रमाणे 
-                अॅडव्हान्स मिळाला तक्रार नाही ही पावती</p></span>';
+                अॅडव्हान्स मिळाला तक्रार नाही ही पावती लिहून दिली आहे.</p></span>';
                 $pdf->writeHTML($html, true, 0, true, true);
                 $liney = $liney+50;
 
@@ -307,6 +317,12 @@ class contract_8
 			$servicecontractor_guarantor2 = new servicecontractor($this->connection);
 			$servicecontractor_guarantor2->fetch($contractguarantordetail2->servicecontractorid);
 
+            
+            $pdf->SetFont('siddhanta', '', 12, '', true);
+            $pdf->multicell(60,10,'पावती लिहून घेणार ',0,'L',false,1,20,$liney,true,0,false,true,10);
+            $pdf->multicell(35,10,'मॅनेजर',0,'L',false,1,20,$liney+10,true,0,false,true,10);
+            $pdf->multicell(100,10,'जय भवानी सर्व सेवा संघ ट्रस्ट',0,'L',false,1,20,$liney+15,true,0,false,true,10);
+
             $pdf->multicell(40,10,'पावती लिहून देणार',0,'L',false,1,110,$liney,true,0,false,true,10);
 			$liney = $liney+10;
             $pdf->rect(130,$liney,10,10);
@@ -332,7 +348,7 @@ class contract_8
             //$list1 = $contract1->guarantorcontractorlist();
             $i=0;
             $pdf->SetFont('siddhanta', '', 13, '', true);
-            $pdf->multicell(35,10,'साक्षीदार',0,'L',false,1,15,$liney,true,0,false,true,10);
+            $pdf->multicell(35,10,'जामीनदार',0,'L',false,1,15,$liney,true,0,false,true,10);
             $liney = $liney+10;
             $pdf->SetFont('siddhanta', '', 11, '', true);
             $list1 = $contract1->guarantorcontractorlist();
@@ -362,6 +378,7 @@ class contract_8
                 $liney = $liney+5;
 
             }
+
 		}
     }
 

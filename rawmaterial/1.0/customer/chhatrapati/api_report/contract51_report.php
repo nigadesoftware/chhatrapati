@@ -30,13 +30,15 @@ class contract_51
             $servicecontractor1->fetch($contract1->servicecontractorid);
             if ($contract1->contractcategoryid == 521478963)
             {
-                $pdf->multicell(100,10,'जावक क्रमांक : ट्रस्ट/    /२०  -२०',0,'L',false,1,15,$liney,true,0,false,true,10);
+                $pdf->SetFont('siddhanta', '', 14);
+                $pdf->multicell(180,10,'शेतकी विभाग शिफारस',0,'C',false,1,15,$liney,true,0,false,true,10);
                 $liney = $liney+7;
+                $pdf->SetFont('siddhanta', '', 11);
                 $pdf->multicell(40,10,'प्रति, ',0,'L',false,1,15,$liney,true,0,false,true,10);
                 $liney = $liney+7;
-                $pdf->multicell(40,10,'हार्वेस्टिंग विभाग',0,'L',false,1,30,$liney,true,0,false,true,10);
+                $pdf->multicell(40,10,'मॅनेजर',0,'L',false,1,30,$liney,true,0,false,true,10);
                 $liney = $liney+7;
-                $pdf->multicell(80,10,'भवानीनगर, ता.इंदापूर जि.पुणे',0,'L',false,1,30,$liney,true,0,false,true,10);
+                $pdf->multicell(80,10,'जय भवानी सर्व सेवा संघ ट्रस्ट',0,'L',false,1,30,$liney,true,0,false,true,10);
                 $liney = $liney+7;
                 $contracttransportdetail1 = new contracttransportdetail($this->connection);
                 $list1 = $contract1->transportlist();
@@ -83,9 +85,17 @@ class contract_51
                 $pdf->writeHTML($html, true, 0, true, true);
                 $liney = $liney+15;
                 }
-                $pdf->multicell(185,10,'ची पुस्तके पाहिली असून त्यांचा करार करुन घ्यावा.',0,'L',false,1,15,$liney,true,0,false,true,10);
-                $liney = $liney+20;
-                $pdf->line(130,$liney-10,195,$liney-10);
+                $pdf->MultiCell(
+                    185,
+                    6,
+                    'ची पुस्तके पाहिली असून त्यांच्या करारानुसार वाहतूकदार व तोडणीदार यांची वाहने प्रत्यक्ष पाहिली असता ती व्यवस्थित असून ऊस तोडणीसाठी आवश्यक माहिती घेतली आहे. तोडणी मुकादम यांना वाहतूकदारांनी आगाऊ रक्कम देऊन टोळीची बांधणी केलेली आहे तसेच त्यांना आगाऊ रक्कम देण्यास शिफारस करण्यात येत आहे.',
+                    0,
+                    'L'
+                );
+
+                $liney = $pdf->GetY() + 2;
+                //$liney = $liney+20;
+                $pdf->line(130,$liney+10,195,$liney+10);
                 $pdf->multicell(50,10,'हार्वेस्टींग विभाग क्लार्क',0,'L',false,1,150,$liney,true,0,false,true,10);
                 $liney = $liney+15;
             }
@@ -151,6 +161,8 @@ class contract_51
             $pdf->multicell(80,10,'चिटबाॅय / मुकादम / सुपरवायझर',0,'L',false,1,140,$liney,true,0,false,true,10);
             $liney = $liney+7;
             $pdf->multicell(50,10,'शेतकी विभाग',0,'L',false,1,150,$liney,true,0,false,true,10);
+            $liney = $liney+5 ;
+            $pdf->multicell(50,10,'श्री छत्रपती स.सा.का.लि. भवानीनगर',0,'L',false,1,150,$liney,true,0,false,true,10);
         }
     }
 

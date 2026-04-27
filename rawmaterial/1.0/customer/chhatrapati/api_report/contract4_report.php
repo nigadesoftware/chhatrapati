@@ -34,7 +34,7 @@ class contract_4
             $curdate = date('d/m/Y');
 			$pdf->multicell(50,10,'दिनांक:'.$curdate,0,'L',false,1,160,$liney,true,0,false,true,10);
 			//$liney = $liney+7;
-            $pdf->multicell(70,10,'मा.अध्यक्ष / कार्यकारी संचालक,',0,'L',false,1,15,$liney,true,0,false,true,10);
+            $pdf->multicell(70,10,'मा.अध्यक्ष / मॅनेजर,',0,'L',false,1,15,$liney,true,0,false,true,10);
 			$liney = $liney+7;
             $pdf->multicell(150,10,'जय भवानी सर्व सेवा संघ (ट्रस्ट)',0,'L',false,1,15,$liney,true,0,false,true,10);
 			$liney = $liney+7;
@@ -153,6 +153,10 @@ class contract_4
                     $liney = $liney+5;
                     $pdf->multicell(35,10,'नाव:',0,'L',false,1,15,$liney,true,0,false,true,10);
                     $pdf->multicell(100,10,$servicecontractor_guarantor1->name_unicode,0,'L',false,1,45,$liney,true,0,false,true,10);
+                    $pdf->multicell(35,10,'जामीनदार '.$i.':',0,'L',false,1,100,$liney,true,0,false,true,10);
+                    $pdf->multicell(100,10,$servicecontractor_guarantor1->name_unicode,0,'L',false,1,125,$liney,true,0,false,true,10);
+                    $pdf->multicell(60,10,'सही',0,'L',false,1,170,$liney,true,0,false,true,10);
+                    $pdf->line(170,$liney,200,$liney);
                     $liney = $liney+5;
                 
                 
@@ -167,7 +171,7 @@ class contract_4
 
             /* $pdf->addpage();
             $liney = 20; */
-            $liney = $liney+15;
+            $liney = $liney+5;
             $pdf->SetFont('siddhanta', '', 15);
 			$pdf->multicell(100,10,'जय भवानी सर्व सेवा संघ (ट्रस्ट)',0,'L',false,1,85,$liney,true,0,false,true,10);
 			$liney = $liney+7;
@@ -204,7 +208,7 @@ class contract_4
 			संघाच्या नाममात्र सभासदत्ववासाठी आपण केलेला 
 			दिनांक <u>'.$contract1->applicationdatetime.'</u> चा 
 			अर्ज संघाच्या कार्यकारी मंडळाने दिनांक:&nbsp;&nbsp;/&nbsp;&nbsp;/&nbsp;&nbsp;
-			रोजीच्या सभेत मंजुर झाला असुन आपणास कारखान्याने नाममात्र सभासदत्व देण्यात आले आहे.</span>';
+			रोजीच्या सभेत मंजुर झाला असुन आपणास संस्थेने नाममात्र सभासदत्व देण्यात आले आहे.</span>';
             // output the HTML content
 			$pdf->writeHTML($html, true, 0, true, true);
 			$liney = $liney+15;

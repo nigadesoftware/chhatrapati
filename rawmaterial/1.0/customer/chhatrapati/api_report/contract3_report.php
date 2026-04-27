@@ -40,8 +40,11 @@ class contract_3
             $pdf->multicell(150,10,'जय भवानी सर्व सेवा संघ (ट्रस्ट)',0,'L',false,1,15,$liney,true,0,false,true,10);
 			$liney = $liney+5;
             $pdf->multicell(150,10,'भवानीनगर, ता.इंदापूर, जि.पुणे',0,'L',false,1,15,$liney,true,0,false,true,10);
-			$liney = $liney+5;
-			
+			$liney = $liney+10;
+			$pdf->SetFont('siddhanta', '', 14, '', true);
+			$pdf->MultiCell(180, 10, 'करार करून देणेसाठी अर्ज', 0, 'C', false, 1, 15, $liney, true, 0, false, true, 10);
+			$liney = $liney + 10;
+			$pdf->SetFont('siddhanta', '', 11, '', true);
 			$contracttransportdetail1 = new contracttransportdetail($this->connection);
 			$contracttransportdetail1 = $this->contracttransportdetail($this->connection,$contract1->contractid);
 			$servicecontractor1 = new servicecontractor($this->connection);
@@ -104,7 +107,7 @@ class contract_3
 				माझा तसा स्वतंत्र तोडणी व वाहतूक कामाचा करार करून घ्यावा व मला आपले धोरणानुसार 
 				सदर कामासाठी मजूर उपलब्ध करणे, वाहन दुरुस्ती करणे इत्यादीसाठी ॲडव्हान्स रक्कम 
 				मिळावी. आणि उधारीने पुढील साहित्य मिळावे व सदरील साहित्याच्या मोबदल्यात
-				 माझे बिलातून कपात करून घ्यावे ही विनंती.</span>';
+				 माझे बिलातून साहित्याची किंमत कपात करून घ्यावे ही विनंती.</span>';
 				// set UTF-8 Unicode font
 				$pdf->SetFont('siddhanta', '', 11);
 				// output the HTML content
@@ -224,12 +227,14 @@ class contract_3
 			$liney = $liney+2;
 			$pdf->line(15,$liney,200,$liney);
 			$liney = $liney+2;
-			$pdf->multicell(100,10,'अाॅफिस कामासाठी',0,'L',false,1,15,$liney,true,0,false,true,10);
+			
+			$pdf->SetFont('siddhanta', '', 13);
+			$pdf->multicell(100,10,'कार्यालयीन उपयोगासाठी',0,'L',false,1,15,$liney,true,0,false,true,10);
 			$liney = $liney+5;
-			$pdf->multicell(100,10,'मा.मुख्य शेतकी अधिकारी सो,',0,'L',false,1,15,$liney,true,0,false,true,10);
-			$liney = $liney+7;
+			//$pdf->multicell(100,10,'मा.मुख्य शेतकी अधिकारी सो,',0,'L',false,1,15,$liney,true,0,false,true,10);
+			//$liney = $liney+7;
 			$html = '<span style="text-align:justify;">श्री./श्रीमती <u>'.$servicecontractor1->name_unicode.'</u>
-			यांचे कागदपत्रांची पडताळणी केली असून समक्ष चर्चेअंती सदर इसम कामावर येण्याची खात्री आहे. तरी सदरचा अर्ज मंजूर करून कारखाना धोरणानुसार त्यांना  साहित्य आणि  ॲडव्हान्सची रक्कम देणेस शिफारस आहे.</span>';
+			यांचे कागदपत्रांची पडताळणी केली असून समक्ष चर्चेअंती सदर इसम कामावर येण्याची खात्री आहे. तरी सदरचा अर्ज मंजूर करून कारखाना व जय भवानी ट्रस्टचे धोरणानुसार त्यांना  साहित्य आणि  ॲडव्हान्सची रक्कम देणेस शिफारस आहे.</span>';
 			// set UTF-8 Unicode font
 			$pdf->SetFont('siddhanta', '', 11);
 			// output the HTML content

@@ -65,7 +65,7 @@ class contract_10
 			$liney = $liney+5;
             $pdf->multicell(25,10,'वय: '.$contract1->age,0,'L',false,1,30,$liney,true,0,false,true,10);
 			$pdf->multicell(10,10,'धंदा:',0,'L',false,1,100,$liney,true,0,false,true,10);
-			$pdf->multicell(30,10,'वहातूकदार',0,'L',false,1,120,$liney,true,0,false,true,10);
+			$pdf->multicell(30,10,'वहातूकदार कॉन्ट्रॅक्टर',0,'L',false,1,120,$liney,true,0,false,true,10);
             $liney = $liney+5;
             $pdf->line(37,$liney,100,$liney);
             $pdf->line(110,$liney,200,$liney);
@@ -93,7 +93,7 @@ class contract_10
 			$liney = $liney+3;
             $pdf->multicell(25,10,'वय: '.$contract1->age,0,'L',false,1,30,$liney,true,0,false,true,10);
 			$pdf->multicell(10,10,'धंदा:',0,'L',false,1,100,$liney,true,0,false,true,10);
-			$pdf->multicell(30,10,'तोडणीदार',0,'L',false,1,120,$liney,true,0,false,true,10);
+			$pdf->multicell(30,10,'तोडणीदार कॉन्ट्रॅक्टर',0,'L',false,1,120,$liney,true,0,false,true,10);
             $liney = $liney+3;
             $pdf->multicell(15,10,'मु.पो.:',0,'L',false,1,30,$liney,true,0,false,true,10);
 			$pdf->multicell(120,10,$servicecontractor11->address_unicode,0,'L',false,1,45,$liney,true,0,false,true,10);
@@ -373,8 +373,8 @@ class contract_10
 			//$pdf->write2DBarcode('www.swapp.co.in', 'QRCODE,H', 140, 210, 25, 25, $style, 'N');
 			//$pdf->Text(140, 205, 'Swapp Software Application');
 
-			$name_unicode = $this->contractagriofficername($this->connection,$contract1->seasonid);
-            $sign = $this->contractagriofficersign($this->connection,$contract1->seasonid);
+			$name_unicode = $this->contractmanagername($this->connection,$contract1->seasonid);
+            $sign = $this->contractmanagersign($this->connection,$contract1->seasonid);
 			$signdata = $sign;
 			$pdf->setImageScale ( PDF_IMAGE_SCALE_RATIO );
 			//$pdf->setJPEGQuality(90);
@@ -391,9 +391,9 @@ class contract_10
             $liney = $liney+5;
 			$pdf->line(30,$liney,100,$liney);
 			$liney = $liney+2;
-			$pdf->multicell(100,10,'मा. शेतकी अधिकारी सो',0,'L',false,1,15,$liney,true,0,false,true,10);
+			$pdf->multicell(100,10,'मा. मॅनेजर',0,'L',false,1,15,$liney,true,0,false,true,10);
 			$liney = $liney+7;
-			$pdf->multicell(100,10,'श्री छत्रपति सहकारी साखर कारखाना लि. भवानीनगर',0,'L',false,1,15,$liney,true,0,false,true,10);
+			$pdf->multicell(100,10,'जय भवानी सर्व सेवा संघ ट्रस्ट',0,'L',false,1,15,$liney,true,0,false,true,10);
 			$liney = $liney+7;
 			$liney = $liney+5;
 
@@ -902,5 +902,29 @@ function contractharvestfingerprintdetail(&$connection,$contractid,$sequencenumb
         }
     }
 }
+function contractmanagername(&$connection,$seasonid)
+    {
+        $servicecontractor1 = new servicecontractor($connection);
+        $query = "select managernameuni from season t where t.active=1 and seasonid =".$seasonid;
+        $result = oci_parse($this->connection, $query);             $r = oci_execute($result);
+        $i=1;
+        $sequencenumber =1;
+        while ($row = oci_fetch_array($result,OCI_ASSOC+OCI_RETURN_NULLS))
+        {
+            return $row['MANAGERNAMEUNI'];
+        }
+    }
+    function contractmanagersign(&$connection,$seasonid)
+    {
+        $servicecontractor1 = new servicecontractor($connection);
+        $query = "select managersign from season t where t.active=1 and seasonid =".$seasonid;
+        $result = oci_parse($this->connection, $query);             $r = oci_execute($result);
+        $i=1;
+        $sequencenumber =1;
+        while ($row = oci_fetch_array($result,OCI_ASSOC+OCI_RETURN_NULLS))
+        {
+            return $row['MANAGERSIGN']->load();
+        }
+    }
 }
 ?>

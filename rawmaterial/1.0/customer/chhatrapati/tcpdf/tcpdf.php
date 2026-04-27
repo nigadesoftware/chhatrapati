@@ -6033,6 +6033,26 @@ class TCPDF {
 									$output[] = $unicode[$i];
 								}
 							}
+							// ===== SPECIAL CASE: र् + या (for काऱ्या, कार्य, कार्यालयीन) =====
+elseif ($unicode[$i] == 0x0930 &&
+        $this->getchar($unicode,$i,1) == $viram &&
+        $this->getchar($unicode,$i,2) == 0x092F)
+{
+    // push य first
+    $output[] = 0x092F;
+
+    // check for ा (kana)
+    if ($this->getchar($unicode,$i,3) == 0x093e)
+    {
+        $output[] = 0x093e;
+        $i++; // skip ा
+    }
+
+    // then reph (use your working glyph OR skip if removed)
+    $output[] = $this->replaceChar($unicode[$i], 0xf306);
+
+    $i += 2; // skip र् + य
+}
 							//for Ra
 							elseif ($unicode[$i] == 0x0930 or $unicode[$i] == 0x0931)
 							{

@@ -2,7 +2,7 @@
 {
     "window.zoomLevel": 1.5,
       // Points to the PHP executable.
-    "php.validate.executablePath": "d:/xampp/php/php.exe",
+    "php.validate.executablePath": "c:/xampp7.2/php/php.exe",
     "editor.fontSize": 14,
     "files.autoSave": "off"
 }

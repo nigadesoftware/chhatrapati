@@ -29,7 +29,8 @@ class contract_2
 			$title = '';
 			$pdf->multicell(35,10,$title,0,'L',false,1,85,$liney,true,0,false,true,10);
 			$liney = $liney+5;
-			$pdf->multicell(200,30,'गाळप हंगाम '.$contract1->seasonname_unicode.' करीता ऊस तोडणी वाहतूक करार',0,'L',false,1,15,$liney,true,0,false,true,20);
+			$pdf->SetFont('siddhanta', '', 12 , '', true);
+			$pdf->multicell(200,30,'गाळप हंगाम '.$contract1->seasonname_unicode.' करीता ऊस तोडणी वाहतूक करार करणे कामी तोडणी वाहतूकदार जामीनदार आणि वाहनांची माहिती खालीलप्रमाणे',0,'L',false,1,15,$liney,true,0,false,true,20);
 			$liney = $liney+17;
 			$pdf->SetFont('siddhanta', '', 12, '', true);
 			$contracttransportdetail1 = new contracttransportdetail($this->connection);
@@ -94,8 +95,8 @@ class contract_2
 				$pdf->line(35,$liney,200,$liney);
 				$liney = $liney+2;
 
-				$pdf->multicell(30,10,'चेक क्रमांक:',0,'L',false,1,15,$liney,true,0,false,true,10);
-				$pdf->multicell(40,10,$contracttransportdetail1->chequenumber,0,'L',false,1,40,$liney,true,0,false,true,10);
+				//$pdf->multicell(30,10,'चेक क्रमांक:',0,'L',false,1,15,$liney,true,0,false,true,10);
+				//$pdf->multicell(40,10,$contracttransportdetail1->chequenumber,0,'L',false,1,40,$liney,true,0,false,true,10);
 				$liney = $liney+5;
 				$pdf->line(35,$liney,200,$liney);
 				$liney = $liney+2;
@@ -218,8 +219,15 @@ class contract_2
 			//$pdf->setJPEGQuality(90);
 			$pdf->Image('@'.$signdata,30,$liney+5,60,15,'PNG', '', '', true, 150, '', false, false, 0, false, false, false);
 
-			$liney = $liney+20;
-				/*$pdf->multicell(30,10,'बँकेचे नाव:',0,'L',false,1,15,$liney,true,0,false,true,10);
+			//$liney = $liney+5 ;
+			$pdf->SetFont('siddhanta', '', 11, '', true);
+			$pdf->multicell(180,10,'वरीलप्रमाणे संपूर्ण माहितीचा करार करून घेतला आहे व तो बरोबर असल्याची खातरजमा केली आहे.   ',0,'L',false,1,20,$liney,true,0,false,true,10);				
+			$liney = $liney+15 ;
+			$pdf->line(100,$liney-5,200,$liney-5);
+			$pdf->SetFont('siddhanta', '', 11, '', true);
+			$pdf->multicell(100,10,'हार्वेस्टिंग क्लार्क',0,'L',false,1,140,$liney,true,0,false,true,10);				
+			
+			/*$pdf->multicell(30,10,'बँकेचे नाव:',0,'L',false,1,15,$liney,true,0,false,true,10);
 				$pdf->multicell(120,10,'पुणे जिल्हा मध्यवर्ती सहकारी बँक, भवानीनगर',0,'L',false,1,40,$liney,true,0,false,true,10);
 				$liney = $liney+5;
 				$pdf->line(35,$liney,200,$liney);

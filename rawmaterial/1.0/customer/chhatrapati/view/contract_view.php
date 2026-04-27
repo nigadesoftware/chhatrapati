@@ -21,6 +21,7 @@
 	include("../api_report/contract52_report.php");
 	include("../api_report/contract13_report.php");
 	include("../api_report/contract14_report.php");
+		include("../api_report/contract66_report.php");
     //Raw Material HT Master Addition or HT Master Alteration
     if (isaccessible(452365784154249)==0 and isaccessible(658741245893258)==0)
     {
@@ -108,36 +109,76 @@
 		$contract1_1->printpageheader($pdf,$liney,$contractid_de); */
 		$pdf->SetPrintHeader(true);
 		$pdf->AddPage();
+		$startY = $pdf->GetY();
 		$liney=20;
 		$contract3_1 = new contract_3($connection);
 		$contract3_1->printpageheader($pdf,$liney,$contractid_de);
 		$pdf->SetPrintHeader(true);
-		$pdf->AddPage();
+		$endY = $pdf->GetY();
+		if ($endY < $startY+5) {
+    	}
+		else
+			{
+				$pdf->AddPage();
+			}
+		$startY = $pdf->GetY();
 		$liney=20;
 		$contract2_1 = new contract_2($connection);
 		$contract2_1->printpageheader($pdf,$liney,$contractid_de);
-		$pdf->SetPrintHeader(true);
-		$pdf->AddPage();
+		$pdf->SetPrintHeader(false);
+		$endY = $pdf->GetY();
+		if ($endY < $startY+5) {
+    	}
+		else
+			{
+				$pdf->AddPage();
+			}
+		$startY = $pdf->GetY();	
 		$liney=20;
 		$contract51_1 = new contract_51($connection);
 		$contract51_1->printpageheader($pdf,$liney,$contractid_de);
-		$pdf->SetPrintHeader(true);
-		$pdf->AddPage();
+		$pdf->SetPrintHeader(false);
+		$endY = $pdf->GetY();
+		if ($endY < $startY+5) {
+    	}
+		else
+			{
+				$pdf->AddPage();
+			}
+		$startY = $pdf->GetY();		
 		$liney=20;
 		$contract4_1 = new contract_4($connection);
 		$contract4_1->printpageheader($pdf,$liney,$contractid_de);
 		$pdf->SetPrintHeader(true);
-		$pdf->AddPage();
+		$endY = $pdf->GetY();
+		if ($endY < $startY+5) {
+    	}
+		else
+			{
+				$pdf->AddPage();
+			}
+		$startY = $pdf->GetY();		
 		$liney=20;
 		$contract5_1 = new contract_5($connection);
 		$contract5_1->printpageheader($pdf,$liney,$contractid_de);
-		$pdf->SetPrintHeader(true);
-		$pdf->AddPage();
-		$liney=20;
+		$pdf->SetPrintHeader(false);
+		$endY = $pdf->GetY();
+		if ($endY < $startY+5) {
+    	}
+		else
+			{
+				$pdf->AddPage();
+			}
+		/* $liney=20;
 		$contract6_1 = new contract_6($connection);
 		$contract6_1->printpageheader($pdf,$liney,$contractid_de);
 		$pdf->SetPrintHeader(false);
-		 $pdf->AddPage();
+		 $pdf->AddPage(); */
+		 $liney=20;
+		$contract66_1 = new contract_66($connection);
+		$contract66_1->printpageheader($pdf,$liney,$contractid_de);
+		$pdf->SetPrintHeader(false);
+		 $pdf->AddPage(); 
 		$liney=20;
 		$contract10_1 = new contract_10($connection);
 		$contract10_1->printpageheader($pdf,$liney,$contractid_de);
@@ -152,14 +193,14 @@
 		$contract8_1 = new contract_8($connection);
 		$contract8_1->printpageheader($pdf,$liney,$contractid_de);
 		$pdf->SetPrintHeader(false);
-		$pdf->AddPage();
-		$liney=20;
+		/*$pdf->AddPage();
+		 $liney=20;
 		$contract11_1 = new contract_11($connection);
 		$contract11_1->printpageheader($pdf,$liney,$contractid_de);
 		$pdf->AddPage();
 		$liney=20;
 		$contract52_1 = new contract_52($connection);
-		$contract52_1->printpageheader($pdf,$liney,$contractid_de);
+		$contract52_1->printpageheader($pdf,$liney,$contractid_de); */
 		//$pdf->AddPage();
 		/* $pdf->AddPage();
 		$liney=20;

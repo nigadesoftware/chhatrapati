@@ -26,7 +26,7 @@ class contract_5
 		if ($contract1->fetch($contractid))
 		{
 			$pdf->SetFont('siddhanta', '', 15, '', true);
-            $pdf->multicell(150,10,'अॅडव्हान्स मागणी अर्ज',0,'L',false,1,85,$liney,true,0,false,true,10);
+            $pdf->multicell(200,10,'तोडणी वाहतूक कॉन्ट्रॅक्टर यांचा अॅडव्हान्स मागणी अर्ज',0,'C',false,1,10,$liney-10,true,0,false,true,10);
             $pdf->SetFont('siddhanta', '', 11, '', true);
             $curdate = date('d/m/Y');
 			$pdf->multicell(50,10,'दिनांक:'.$curdate,0,'L',false,1,160,$liney,true,0,false,true,10);
@@ -41,7 +41,7 @@ class contract_5
             $contractharvestdetail1 = new contractharvestdetail($this->connection);
 			$contractharvestdetail1 = $this->contractharvestdetail($this->connection,$contract1->contractid);
             
-            $pdf->multicell(70,10,'मा.मॅनेजर / अध्यक्ष,',0,'L',false,1,15,$liney,true,0,false,true,10);
+            $pdf->multicell(70,10,'मा.अध्यक्ष / मॅनेजर,',0,'L',false,1,15,$liney,true,0,false,true,10);
             $liney = $liney+7;
             $pdf->multicell(150,10,'जय भवानी सर्व संघ (ट्रस्ट)',0,'L',false,1,15,$liney,true,0,false,true,10);
             $liney = $liney+7;
@@ -58,7 +58,7 @@ class contract_5
             $pdf->multicell(10,10,'धंदा:',0,'L',false,1,100,$liney,true,0,false,true,10);
             if ($contract1->contractcategoryid == 521478963)
             {
-                $pdf->multicell(30,10,'वहातूकदार',0,'L',false,1,120,$liney,true,0,false,true,10);
+                $pdf->multicell(30,10,'वहातूकदार कॉन्ट्रॅक्टर',0,'L',false,1,120,$liney,true,0,false,true,10);
             }
             else if($contract1->contractcategoryid == 785415263)
             {
@@ -86,14 +86,16 @@ class contract_5
             $contractadvancedetail1 = new contractadvancedetail($this->connection);
             $contractadvancedetail1 = $this->contractadvancedetail($this->connection,$contractid,1);
             $pdf->SetFont('siddhanta', '', 11, '', true);
-            $wrdamt = NumberToWords(number_format_indian($contractadvancedetail1->advancedemandamount,0,false,false),1);
+            if ($contractadvancedetail1->advancedemandamount>0)
+            $wrdamt = '<u>Rs '.$contractadvancedetail1->advancedemandamount.' (अक्षरी '.NumberToWords(number_format_indian($contractadvancedetail1->advancedemandamount,0,false,false),1).') ';
+            else
+            $wrdamt ='<u>Rs 0 (अक्षरी शून्य)</u>';    
             $html = '<span style="text-align:justify;">महाशय,<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;मी 
             अापणाकडे श्री छत्रपति सहकारी साखर कारखाना लि., भवानीनगर, 
             ता.इंदापूर, जि.पुणे यांचे गळीत हंगाम <u>'.$contract1->seasonname_unicode.'</u> 
-            करिता ऊस तोडणी वाहतुकीसाठी <u>'.$contract1->contractcategoryname_unicode.'</u>चा 
+            करिता ऊस तोडणी वाहतुकीसाठी आपल्या संस्थेस <u>'.$contract1->contractcategoryname_unicode.'</u>चा 
             करार करून दिलेला आहे. त्यासाठी मला '.$contract1->harvestlabourcategoryname_unicode.' 
-            अॅडव्हान्स(उचल) देणेकरिता आपले नियमाप्रमाणे <u>Rs'.$contractadvancedetail1->advancedemandamount.' 
-            (अक्षरी '.$wrdamt.')</u> हप्त्याप्रमाणे अॅडव्हान्स मिळावा ही विनंती. सदर अॅडव्हान्सची रक्कम माझे होणाऱ्या
+            अॅडव्हान्स(उचल) देणेकरिता आपले नियमाप्रमाणे '.$wrdamt.' हप्त्याप्रमाणे अॅडव्हान्स मिळावा ही विनंती. सदर अॅडव्हान्सची रक्कम माझे होणाऱ्या
             तोडणी वाहतुकीच्या बिलातून, डिपॉझिटमधून किंवा देय असणाऱ्या रकमेतून वसूल करून घ्यावी. 
             </span>';
             $pdf->writeHTML($html, true, 0, true, true);
@@ -112,15 +114,18 @@ class contract_5
             $pdf->multicell(100,10,'('.$servicecontractor1->name_unicode.')',0,'L',false,1,125,$liney,true,0,false,true,10);
             $liney = $liney+7;
             $pdf->line(15,$liney,200,$liney);
-            $liney = $liney+14;
+            //$liney = $liney+14;
 
-                $pdf->multicell(70,10,'मा.मॅनेजर / अध्यक्ष,',0,'L',false,1,15,$liney,true,0,false,true,10);
+                //$pdf->multicell(70,10,'मा.मॅनेजर / अध्यक्ष,',0,'L',false,1,15,$liney,true,0,false,true,10);
+                //$liney = $liney+7;
+                //$pdf->multicell(150,10,'जय भवानी सर्व संघ (ट्रस्ट)',0,'L',false,1,15,$liney,true,0,false,true,10);
+                //$liney = $liney+7;
+                //$pdf->multicell(150,10,'भवानीनगर, ता.इंदापूर, जि.पुणे',0,'L',false,1,15,$liney,true,0,false,true,10);
+                //$liney = $liney+7;
                 $liney = $liney+7;
-                $pdf->multicell(150,10,'जय भवानी सर्व संघ (ट्रस्ट)',0,'L',false,1,15,$liney,true,0,false,true,10);
-                $liney = $liney+7;
-                $pdf->multicell(150,10,'भवानीनगर, ता.इंदापूर, जि.पुणे',0,'L',false,1,15,$liney,true,0,false,true,10);
-                $liney = $liney+7;
-
+                $pdf->SetFont('siddhanta', '', 14);
+                $pdf->multicell(200,10,'कार्यालयीन उपयोगासाठी',0,'C',false,1,15,$liney,true,0,false,true,10);
+                $liney = $liney+14;
                 $pdf->SetFont('siddhanta', '', 11);
                 
                 $pdf->multicell(15,10,'श्री.',0,'L',false,1,15,$liney,true,0,false,true,10);
@@ -135,26 +140,30 @@ class contract_5
                 $liney = $liney+2;
                 // set UTF-8 Unicode font
                 $pdf->SetFont('siddhanta', '', 11);
-                $html = '<span style="text-align:justify;">यांनी आपले कारखान्याकडे 
+                if ($contractadvancedetail1->approvedamount >0)
+                $amt = '<u>Rs '.$contractadvancedetail1->approvedamount.'</u>';
+                else
+                $amt = '<u>Rs 0</u>';
+                $html = '<span style="text-align:justify;">यांनी आपले संस्थेकडे 
                 सन '.$contract1->seasonname_unicode.' करिता ऊस तोडणी / वाहतुकीसाठी 
                 '.$contract1->contractcategoryname_unicode.' करार केलेला असून 
-                त्यांना या करारापोटी अॅडव्हान्स रक्कम <u>Rs'.$contractadvancedetail1->approvedamount.'</u> देणेत यावा.</span>';
+                त्यांना या करारापोटी अॅडव्हान्स रक्कम '.$amt.' देणेत यावा.</span>';
                 // output the HTML content
                 $pdf->writeHTML($html, true, 0, true, true);
                 
                 $liney = $liney+30;
-                $name_unicode = $this->contractagriofficername($this->connection,$contract1->seasonid);
-                $sign = $this->contractagriofficersign($this->connection,$contract1->seasonid);
+                $name_unicode = $this->contractmanagername($this->connection,$contract1->seasonid);
+                $sign = $this->contractmanagersign($this->connection,$contract1->seasonid);
                 $signdata = $sign;
                 $pdf->setImageScale ( PDF_IMAGE_SCALE_RATIO );
                 //$pdf->setJPEGQuality(90);
                 $pdf->Image('@'.$signdata,100,$liney-15,60,15,'PNG', '', '', true, 150, '', false, false, 0, false, false, false);
 
                 $pdf->multicell(50,10,'स्थळ:भवानीनगर',0,'L',false,1,15,$liney,true,0,false,true,10);
-                $pdf->multicell(100,10,'शेतकी अधिकारी',0,'L',false,1,125,$liney,true,0,false,true,10);
+                $pdf->multicell(100,10,'मॅनेजर',0,'L',false,1,125,$liney,true,0,false,true,10);
                 $liney = $liney+7;
                 $pdf->multicell(100,10,'दि.'.$contractadvancedetail1->approveddatetime,0,'L',false,1,15,$liney,true,0,false,true,10);
-                $pdf->multicell(100,10,'श्री छत्रपति सह. सा. का. लि.',0,'L',false,1,115,$liney,true,0,false,true,10);
+                $pdf->multicell(100,10,'जय भवानी सर्व सेवा संघ',0,'L',false,1,115,$liney,true,0,false,true,10);
 		}
     }
 
@@ -316,6 +325,30 @@ class contract_5
         while ($row = oci_fetch_array($result,OCI_ASSOC+OCI_RETURN_NULLS))
         {
             return $row['SIGN']->load();
+        }
+    }
+    function contractmanagername(&$connection,$seasonid)
+    {
+        $servicecontractor1 = new servicecontractor($connection);
+        $query = "select managernameuni from season t where t.active=1 and seasonid =".$seasonid;
+        $result = oci_parse($this->connection, $query);             $r = oci_execute($result);
+        $i=1;
+        $sequencenumber =1;
+        while ($row = oci_fetch_array($result,OCI_ASSOC+OCI_RETURN_NULLS))
+        {
+            return $row['MANAGERNAMEUNI'];
+        }
+    }
+    function contractmanagersign(&$connection,$seasonid)
+    {
+        $servicecontractor1 = new servicecontractor($connection);
+        $query = "select managersign from season t where t.active=1 and seasonid =".$seasonid;
+        $result = oci_parse($this->connection, $query);             $r = oci_execute($result);
+        $i=1;
+        $sequencenumber =1;
+        while ($row = oci_fetch_array($result,OCI_ASSOC+OCI_RETURN_NULLS))
+        {
+            return $row['MANAGERSIGN']->load();
         }
     }
 
