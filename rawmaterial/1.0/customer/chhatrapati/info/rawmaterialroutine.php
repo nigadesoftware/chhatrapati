@@ -72,8 +72,8 @@
     {
         require("../info/phpsqlajax_dbinfo.php");
         // Opens a connection to a MySQL server
-        //$dbname = "sugar";
-        //$host = "192.168.1.3";
+        $dbname = "sugar";
+        $host = "192.168.1.3";
         $dbname = "orcl";
         $host = "localhost";
         $db= "(DESCRIPTION =
