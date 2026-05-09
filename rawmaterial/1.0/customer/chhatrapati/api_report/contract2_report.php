@@ -258,7 +258,7 @@ class contract_2
 				$pdf->rect(15,$liney,185,40);
 				$pdf->line(45,$liney,45,$liney+40);
 				$pdf->line(85,$liney,85,$liney+40);
-				$pdf->line(115,$liney,115,$liney+40);
+				//$pdf->line(115,$liney,115,$liney+40);
 				$pdf->line(145,$liney,145,$liney+40);
 				$pdf->line(175,$liney,175,$liney+40);
 				
@@ -269,8 +269,8 @@ class contract_2
 				$pdf->SetFont('siddhanta', '', 11, '', true);
 				$pdf->multicell(30,10,'वाहनाचा प्रकार',0,'L',false,1,15,$liney,true,0,false,true,10);
 				$pdf->multicell(40,10,'वाहन क्रमांक',0,'L',false,1,45,$liney,true,0,false,true,10);
-				$pdf->multicell(30,10,'आरटीओ पासिंग दिनांक',0,'L',false,1,85,$liney,true,0,false,true,10);
-				$pdf->multicell(30,10,'विमा भरल्याचा दिनांक',0,'L',false,1,115,$liney,true,0,false,true,10);
+				$pdf->multicell(60,10,'वाहन चासी नंबर',0,'L',false,1,85,$liney,true,0,false,true,10);
+				//$pdf->multicell(30,10,'विमा भरल्याचा दिनांक',0,'L',false,1,115,$liney,true,0,false,true,10);
 				$pdf->multicell(30,10,'आर.सी. झेरॉक्स',0,'L',false,1,145,$liney,true,0,false,true,10);
 				$pdf->multicell(30,10,'टी.सी. झेरॉक्स',0,'L',false,1,175,$liney,true,0,false,true,10);
 
@@ -281,8 +281,8 @@ class contract_2
 				$pdf->SetFont('helvetica', '', 11, '', true);
 				$pdf->multicell(40,10,$contracttransportdetail1->vehiclenumber,0,'L',false,1,45,$liney+12,true,0,false,true,10);
 				$pdf->SetFont('siddhanta', '', 11, '', true);
-				$pdf->multicell(30,10,$contracttransportdetail1->rtopassingdatetime,0,'L',false,1,87,$liney+12,true,0,false,true,10);
-				$pdf->multicell(30,10,$contracttransportdetail1->insurancepaiddatetime,0,'L',false,1,117,$liney+12,true,0,false,true,10);
+				$pdf->multicell(60,10,$contracttransportdetail1->rtopassingdatetime,0,'L',false,1,87,$liney+12,true,0,false,true,10);
+				//$pdf->multicell(30,10,$contracttransportdetail1->insurancepaiddatetime,0,'L',false,1,117,$liney+12,true,0,false,true,10);
 				if ($contracttransportdetail1->isrcattached == 1)
 				{
 					$isrcattached = 'होय';
@@ -317,8 +317,8 @@ class contract_2
 						$pdf->SetFont('helvetica', '', 11, '', true);
 						$pdf->multicell(40,10,$contracttransporttrailerdetail1->trailernumber,0,'L',false,1,45,$liney+$j,true,0,false,true,10);
 						$pdf->SetFont('siddhanta', '', 11, '', true);
-						$pdf->multicell(30,10,$contracttransporttrailerdetail1->rtopassingdatetime,0,'L',false,1,87,$liney+$j,true,0,false,true,10);
-						$pdf->multicell(30,10,$contracttransporttrailerdetail1->insurancepaiddatetime,0,'L',false,1,117,$liney+$j,true,0,false,true,10);
+						$pdf->multicell(60,10,$contracttransporttrailerdetail1->rtopassingdatetime,0,'L',false,1,87,$liney+$j,true,0,false,true,10);
+						//$pdf->multicell(30,10,$contracttransporttrailerdetail1->insurancepaiddatetime,0,'L',false,1,117,$liney+$j,true,0,false,true,10);
 						if ($contracttransporttrailerdetail1->isrcattached == 1)
 						{
 							$isrcattached = 'होय';

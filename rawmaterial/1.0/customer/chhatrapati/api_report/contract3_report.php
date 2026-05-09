@@ -32,17 +32,17 @@ class contract_3
 		{
 			$pdf->SetFont('siddhanta', '', 11, '', true);
 			$curdate = date('d/m/Y');
-			$pdf->multicell(50,10,'दिनांक:'.$curdate,0,'L',false,1,160,$liney,true,0,false,true,10);
+			$pdf->multicell(50,10,'दिनांक:'.$contract1->contractdatetime,0,'L',false,1,160,$liney,true,0,false,true,10);
             $pdf->multicell(50,10,'प्रति,',0,'L',false,1,15,$liney,true,0,false,true,10);
 			$liney = $liney+5;
-            $pdf->multicell(70,10,'मा.विश्वस्तसो,',0,'L',false,1,15,$liney,true,0,false,true,10);
+            $pdf->multicell(70,10,'मा.विश्वस्तसो / मॅनेजरसो,',0,'L',false,1,15,$liney,true,0,false,true,10);
 			$liney = $liney+5;
             $pdf->multicell(150,10,'जय भवानी सर्व सेवा संघ (ट्रस्ट)',0,'L',false,1,15,$liney,true,0,false,true,10);
 			$liney = $liney+5;
             $pdf->multicell(150,10,'भवानीनगर, ता.इंदापूर, जि.पुणे',0,'L',false,1,15,$liney,true,0,false,true,10);
 			$liney = $liney+10;
 			$pdf->SetFont('siddhanta', '', 14, '', true);
-			$pdf->MultiCell(180, 10, 'करार करून देणेसाठी अर्ज', 0, 'C', false, 1, 15, $liney, true, 0, false, true, 10);
+			$pdf->MultiCell(180, 10, 'करार करून घेणेसाठी अर्ज', 0, 'C', false, 1, 15, $liney, true, 0, false, true, 10);
 			$liney = $liney + 10;
 			$pdf->SetFont('siddhanta', '', 11, '', true);
 			$contracttransportdetail1 = new contracttransportdetail($this->connection);
@@ -221,7 +221,7 @@ class contract_3
 				$liney = $liney+5;
 			}
 			$pdf->line(100,$liney,200,$liney);
-			$pdf->multicell(100,10,' दस्तूर देणार नाव न सही',0,'L',false,1,100,$liney,true,0,false,true,10);
+			$pdf->multicell(100,10,' दस्तूर देणार नाव व सही',0,'L',false,1,100,$liney,true,0,false,true,10);
 			$liney = $liney+5;
 			$pdf->line(100,$liney,200,$liney);
 			$liney = $liney+2;
@@ -265,7 +265,7 @@ class contract_3
             $sign = $this->contractagriofficersign($this->connection,$contract1->seasonid);
 			
 			$html = '<span style="text-align:justify;">मा. फायनान्स मॅनेजर,
-			श्री/ श्रीमती <u>'.$servicecontractor1->name_unicode.'</u> यांचा अर्ज अर्ज मंजूर / नामंजूर केला असून करणार साहित्य आणि ऍडव्हान्स रक्कम देण्यात यावी/ देऊ नये
+			श्री/ श्रीमती <u>'.$servicecontractor1->name_unicode.'</u> यांचा अर्ज मंजूर / नामंजूर केला असून साहित्य आणि ऍडव्हान्स रक्कम देण्यात यावी/ देऊ नये
 		   </span>';
 			// set UTF-8 Unicode font
 			$pdf->SetFont('siddhanta', '', 11);
@@ -280,7 +280,7 @@ class contract_3
 
 			$pdf->multicell(15,10,'सही',0,'L',false,1,125,$liney,true,0,false,true,10);
 			$liney = $liney+20;
-			$pdf->multicell(100,10,'मुख्य शेतकी अधिकारी',0,'L',false,1,125,$liney,true,0,false,true,10);
+			$pdf->multicell(100,10,'मॅनेजर जय भवानी सर्व सेवा संघ (ट्रस्ट), भवानीनगर',0,'L',false,1,125,$liney,true,0,false,true,10);
 			$pdf->multicell(100,10,$name_unicode,0,'L',false,1,125,$liney+7,true,0,false,true,10);
 			//$liney = $liney+7;
 			//$pdf->multicell(100,10,'श्री छत्रपति सह.सा.का.लि.',0,'L',false,1,125,$liney,true,0,false,true,10);

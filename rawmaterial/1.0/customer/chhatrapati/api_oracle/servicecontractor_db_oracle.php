@@ -11,6 +11,7 @@ class servicecontractor extends swappform
 	public $bankaccountnumber;
 	public $age;
 	public $castename_unicode;
+	public $aadharnumber;
 	public function __construct(&$connection)
 	{
 		parent::__construct($connection);

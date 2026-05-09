@@ -32,7 +32,7 @@ class contract_4
 		{
 			$pdf->SetFont('siddhanta', '', 11, '', true);
             $curdate = date('d/m/Y');
-			$pdf->multicell(50,10,'दिनांक:'.$curdate,0,'L',false,1,160,$liney,true,0,false,true,10);
+			$pdf->multicell(50,10,'दिनांक:'.$contract1->contractdatetime,0,'L',false,1,160,$liney,true,0,false,true,10);
 			//$liney = $liney+7;
             $pdf->multicell(70,10,'मा.अध्यक्ष / मॅनेजर,',0,'L',false,1,15,$liney,true,0,false,true,10);
 			$liney = $liney+7;

@@ -32,8 +32,15 @@ class contract_66
             $pdf->multicell(200,10,'जय भवानी सर्व सेवा संघाकडील येणे बाकी माहिती',0,'C',false,1,10,$liney-5,true,0,false,true,10);
             $pdf->SetFont('siddhanta', '', 11, '', true);
 			$curdate = date('d/m/Y');
-			$pdf->multicell(50,10,'दिनांक:'.$curdate,0,'L',false,1,160,$liney,true,0,false,true,10);
+			$pdf->multicell(50,10,'दिनांक:'.$contract1->contractdatetime,0,'L',false,1,160,$liney,true,0,false,true,10);
 			$liney = $liney+20;
+            $servicecontractor1 = new servicecontractor($this->connection);
+			$servicecontractor1->fetch($contract1->servicecontractorid);
+            
+            $pdf->multicell(100,10,'कंत्राटदाराचे नाव:'.$servicecontractor1->name_unicode,0,'L',false,1,10,$liney,true,0,false,true,10);
+			$liney = $liney+7;
+            $pdf->multicell(100,10,'येणे बाकी:',0,'L',false,1,10,$liney,true,0,false,true,10);
+			$liney = $liney+30;
             $pdf->multicell(70,10,'क्लार्क / अकाऊंटट ',0,'L',false,1,10,$liney,true,0,false,true,10);
             $pdf->multicell(70,10,'मा.मॅनेजर / अध्यक्ष,',0,'L',false,1,100,$liney,true,0,false,true,10);
 			$liney = $liney+7;
@@ -43,7 +50,11 @@ class contract_66
             $liney = $liney+40;
             $html = '<span style="text-align:justify;">श्री छत्रपती सहकारी साखर कारखाना लि भवानीनगर, इंदापूर यांचेकडील येणे बाकी आहे किंवा कसे याबाबत शेरा</span>';
             $pdf->writeHTML($html, true, 0, true, true);
-            $liney = $liney+20;
+            $liney = $liney+7;
+            $pdf->multicell(100,10,'कंत्राटदाराचे नाव:'.$servicecontractor1->name_unicode,0,'L',false,1,10,$liney,true,0,false,true,10);
+			$liney = $liney+7;
+            $pdf->multicell(100,10,'येणे बाकी:',0,'L',false,1,10,$liney,true,0,false,true,10);
+			$liney = $liney+30;
             $pdf->multicell(70,10,'क्लार्क / खाते प्रमुख',0,'L',false,1,10,$liney,true,0,false,true,10);
             $pdf->multicell(70,10,'कार्यकारी संचालक',0,'L',false,1,100,$liney,true,0,false,true,10);
 			$liney = $liney+7;

@@ -38,7 +38,7 @@ class contract_10
             $liney = $liney+10;
             $pdf->SetFont('siddhanta', '', 11, '', true);
             $curdate = date('d/m/Y');
-			$pdf->multicell(180,10,'आज तारीख '.$curdate.' रोज चे दिवशी मौजे भवानीनगर, ता.इंदापूर, जि.पुणे',0,'L',false,1,15,$liney,true,0,false,true,10);
+			$pdf->multicell(180,10,'आज तारीख '.$contract1->contractdatetime.' रोज चे दिवशी मौजे भवानीनगर, ता.इंदापूर, जि.पुणे',0,'L',false,1,15,$liney,true,0,false,true,10);
 			$liney = $liney+5;
             $pdf->SetFont('siddhanta', '', 13, '', true);
             $pdf->multicell(70,10,'लिहून घेणार,',0,'L',false,1,15,$liney,true,0,false,true,10);
@@ -292,7 +292,7 @@ class contract_10
 			$pdf->multicell(40,10,'स्थळ: भवानीनगर',0,'L',false,1,15,$liney,true,0,false,true,10);
 			$liney = $liney+5;
 			$curdate = date('d/m/Y');
-            $pdf->multicell(50,10,'दिनांक:'.$curdate,0,'L',false,1,15,$liney,true,0,false,true,10);
+            $pdf->multicell(50,10,'दिनांक:'.$contract1->contractdatetime,0,'L',false,1,15,$liney,true,0,false,true,10);
 			$liney = $liney+5;
             
 			$contractphotodetail1 = new contractphotodetail($this->connection);

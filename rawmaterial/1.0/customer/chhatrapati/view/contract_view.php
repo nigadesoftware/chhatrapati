@@ -107,30 +107,33 @@
 		$pdf->AddPage();
 		$liney=20;
 		$contract1_1->printpageheader($pdf,$liney,$contractid_de); */
-		$pdf->SetPrintHeader(true);
+		$pdf->SetPrintHeader(false);
 		$pdf->AddPage();
+		$pdf->SetPrintHeader(true);
 		$startY = $pdf->GetY();
 		$liney=20;
 		$contract3_1 = new contract_3($connection);
 		$contract3_1->printpageheader($pdf,$liney,$contractid_de);
-		$pdf->SetPrintHeader(true);
+	
 		$endY = $pdf->GetY();
 		if ($endY < $startY+5) {
     	}
 		else
 			{
+				$pdf->SetPrintHeader(true);
 				$pdf->AddPage();
 			}
 		$startY = $pdf->GetY();
 		$liney=20;
 		$contract2_1 = new contract_2($connection);
 		$contract2_1->printpageheader($pdf,$liney,$contractid_de);
-		$pdf->SetPrintHeader(false);
+		$pdf->SetPrintHeader(true);
 		$endY = $pdf->GetY();
 		if ($endY < $startY+5) {
     	}
 		else
 			{
+				$pdf->SetPrintHeader(false);
 				$pdf->AddPage();
 			}
 		$startY = $pdf->GetY();	

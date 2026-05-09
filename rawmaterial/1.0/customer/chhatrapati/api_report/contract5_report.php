@@ -29,7 +29,7 @@ class contract_5
             $pdf->multicell(200,10,'तोडणी वाहतूक कॉन्ट्रॅक्टर यांचा अॅडव्हान्स मागणी अर्ज',0,'C',false,1,10,$liney-10,true,0,false,true,10);
             $pdf->SetFont('siddhanta', '', 11, '', true);
             $curdate = date('d/m/Y');
-			$pdf->multicell(50,10,'दिनांक:'.$curdate,0,'L',false,1,160,$liney,true,0,false,true,10);
+			$pdf->multicell(50,10,'दिनांक:'.$contract1->contractdatetime,0,'L',false,1,160,$liney,true,0,false,true,10);
 			$pdf->multicell(50,10,'प्रति,',0,'L',false,1,15,$liney,true,0,false,true,10);
 			$liney = $liney+7;
             
